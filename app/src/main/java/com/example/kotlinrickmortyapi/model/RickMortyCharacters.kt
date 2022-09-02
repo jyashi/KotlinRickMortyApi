@@ -15,6 +15,8 @@ data class RickMortyCharacter(
     @Json(name= "status")
     val status: String,
 )
-class RickMortyCharacters {
+data class RickMortyCharactersList(
+    @Json(name="results")
+    val result: List<RickMortyCharacter>
+)
 
-}
