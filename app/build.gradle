@@ -46,7 +46,12 @@ android {
 }
 
 dependencies {
-
+    def retrofit_version = "2.9.0"
+    def moshi_version = "1.13.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation("io.coil-kt:coil")
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
