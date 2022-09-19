@@ -43,6 +43,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.example.kotlinrickmortyapi'
 }
 
 dependencies {
@@ -52,7 +53,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
-//    implementation("io.coil-kt:coil:2.2.0")
+
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -64,7 +65,9 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     // ViewmodelScopeLaunch
     implementation"androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    implementation"io.coil-kt:coil-compose:2.1.0"
+    // IO Coil for compose
+    implementation("io.coil-kt:coil-compose:2.0.0")
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

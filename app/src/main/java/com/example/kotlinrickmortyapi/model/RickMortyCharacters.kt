@@ -20,3 +20,4 @@ data class RickMortyCharactersList(
     val result: List<RickMortyCharacter>
 )
 
+
