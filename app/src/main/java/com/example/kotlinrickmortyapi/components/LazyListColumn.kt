@@ -1,4 +1,5 @@
 package com.example.kotlinrickmortyapi.components
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,7 +10,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
@@ -22,7 +25,7 @@ import kotlinx.coroutines.launch
 //   val mainModel: MainViewModel by viewModel()
 //}
 val mainModel: MainViewModel = MainViewModel()
-var page: Int = 1
+
 
 @Composable
 fun LazyListColumn() {
@@ -44,14 +47,18 @@ fun LazyListColumn() {
         }
     }
 
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .height(550.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(550.dp)
+    ) {
 
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(25.dp)
+                .padding(12.dp)
+
+
         )
 
         {
@@ -63,21 +70,17 @@ fun LazyListColumn() {
             }
 
 
-
         }
     }
-
-
 
 
 }
 
 
-
 @Composable
 fun CharacterData(index: Int) {
 
-    Card(modifier = Modifier.fillMaxWidth(), elevation = 16.dp, shape = RoundedCornerShape(50.dp)) {
+    Card(modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp), elevation = 16.dp, shape = RoundedCornerShape(12.dp)) {
         Row() {
 
 
@@ -110,20 +113,5 @@ fun CharacterData(index: Int) {
 
 }
 
-fun incrementPage() {
-    ++page
-}
-
-@Composable
-fun myButton() {
-        Button( onClick = {
-            incrementPage()
-            mainModel.getRickMortyCharacters(page.toString())
-        }) {
-
-            Text(text = mainModel.name.value)
-
-        }
 
 
-}

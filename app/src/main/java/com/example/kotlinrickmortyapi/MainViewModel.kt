@@ -17,6 +17,7 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository = Repository(ApiClient().apiService)):
     ViewModel() {
+    var currentPage: String = "1"
     var _name = mutableStateOf("Name")
     var name : State<String> = _name
     var _data = mutableStateOf(placeHolderList())

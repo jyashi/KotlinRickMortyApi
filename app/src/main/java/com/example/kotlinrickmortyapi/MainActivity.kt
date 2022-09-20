@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.kotlinrickmortyapi.components.LazyListColumn
-import com.example.kotlinrickmortyapi.components.myButton
+import com.example.kotlinrickmortyapi.components.nextPageButton
 import com.example.kotlinrickmortyapi.ui.theme.KotlinRickMortyApiTheme
 
 
@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     Column(verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally) {
                         LazyListColumn()
-                        myButton()
+                        nextPageButton()
                     }
                 }
 
