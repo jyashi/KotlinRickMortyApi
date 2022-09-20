@@ -1,9 +1,11 @@
 package com.example.kotlinrickmortyapi
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.kotlinrickmortyapi.components.mainModel
 import com.example.kotlinrickmortyapi.model.ApiClient
 import com.example.kotlinrickmortyapi.model.RickMortyCharacter
 import com.example.kotlinrickmortyapi.model.RickMortyCharactersList
@@ -17,7 +19,7 @@ import retrofit2.Response
 
 class MainViewModel(private val repository: Repository = Repository(ApiClient().apiService)):
     ViewModel() {
-    var currentPage: String = "1"
+    var page: MutableState<Int> = mutableStateOf(1)
     var _name = mutableStateOf("Name")
     var name : State<String> = _name
     var _data = mutableStateOf(placeHolderList())
@@ -27,15 +29,24 @@ class MainViewModel(private val repository: Repository = Repository(ApiClient().
 
 
         init {
-            viewModelScope.launch { getRickMortyCharacters(page = "1") }
+            viewModelScope.launch { getRickMortyCharacters() }
         }
 
+    fun incrementPage() {
+        ++mainModel.page.value
+        mainModel.getRickMortyCharacters()
+    }
+
+    fun decrementPage() {
+        --mainModel.page.value
+        mainModel.getRickMortyCharacters()
+    }
 
 
 
-     fun getRickMortyCharacters(page:String) {
+    private fun getRickMortyCharacters() {
         //TODO Get the repo
-        val client = repository.getRickMortyCharacters(page = page)
+        val client = repository.getRickMortyCharacters(page = page.value.toString())
         client.enqueue(object : Callback<RickMortyCharactersList>{
             override fun onResponse(
                 call: Call<RickMortyCharactersList>,
