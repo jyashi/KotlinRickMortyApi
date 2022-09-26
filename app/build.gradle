@@ -65,6 +65,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.2.5"
     // ViewmodelScopeLaunch
     implementation"androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1"
     // IO Coil for compose
     implementation("io.coil-kt:coil-compose:2.0.0")
 

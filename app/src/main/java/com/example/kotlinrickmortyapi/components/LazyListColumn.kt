@@ -1,117 +1,116 @@
 package com.example.kotlinrickmortyapi.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.ArrowForward
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.BottomCenter
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import coil.transform.CircleCropTransformation
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinrickmortyapi.MainViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
-//class test {
-//   val mainModel: MainViewModel by viewModel()
-//}
-val mainModel: MainViewModel = MainViewModel()
-
-
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun LazyListColumn() {
+fun LazyListColumn(mainModel: MainViewModel = viewModel()) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
 
-
-    val scope = rememberCoroutineScope()
-
-    var data = mainModel.RickMortyData.collectAsState().value
-    var name: MutableState<String> = remember {
-        mutableStateOf("Placeholder")
-    }
-    LaunchedEffect(true) {
-        scope.launch(Dispatchers.IO) {
-            if (data.isNotEmpty()) {
-                name.value = data.first().name
-                println("Name updated --> $name")
-            }
-
-        }
-    }
-
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(550.dp)
     ) {
-
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+//                .background(color = Color.DarkGray)
 
 
-        )
 
-        {
+        ) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(12.dp)
+//                    .background(color = Color.LightGray)
+            ) {
+                items(mainModel.data.value.size) { index ->
+//                    CharacterData(index = index)
+                    ExpandableCard(index = index)
+                }
+                item { 
+                    Spacer(modifier = Modifier.padding(45.dp))
+                }
 
+            }
 
-            items(mainModel.data.value.size) { index ->
-                CharacterData(index = index)
+            LoadingBar(showing = mainModel.isLoading.value, modifier = Modifier.align(Center))
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
+                modifier = Modifier
+                    .align(BottomCenter)
+                    .padding(vertical = 50.dp)
+                    .background(
+                        color = Color.DarkGray.copy(alpha = 0.5f),
+                        shape = RoundedCornerShape(50.dp)
+                    )) {
+                if(mainModel.page.value != 1){
+                    LaunchedEffect(key1 = true ){
+                    }
+                    IconButton(modifier= Modifier,onClick = {
+                        mainModel.decrementPage()}) {
+                        Icon(Icons.Rounded.ArrowBack,null)
+                    }
+
+                }
+
+                else{
+                    IconButton(modifier = Modifier, onClick = { /*TODO*/ }, enabled = false) {
+                    }
+
+                }
+                Text(text = mainModel.page.value.toString())
+
+                if (mainModel.page.value == 42){
+                    IconButton(modifier = Modifier, onClick = { /*TODO*/ }, enabled = false) {
+                    }
+                }
+                else {
+                    IconButton( onClick = {
+                        mainModel.incrementPage()
+                    }) {
+
+                        Icon(Icons.Rounded.ArrowForward,null)
+
+                    }
+                }
+
 
             }
 
 
         }
+
     }
-
-
 }
 
 
 @Composable
-fun CharacterData(index: Int) {
-
-    Card(modifier = Modifier.fillMaxWidth().padding(vertical = 5.dp), elevation = 16.dp, shape = RoundedCornerShape(12.dp)) {
-        Row() {
-
-
-            Row() {
-                AsyncImage(
-                    ImageRequest.Builder(LocalContext.current)
-                        .data(mainModel.data.value[index].image)
-                        .crossfade(true)
-                        .transformations(CircleCropTransformation())
-                        .build(),
-                    contentDescription = null, modifier = Modifier.padding(15.dp)
-                )
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-
-                    Spacer(modifier = Modifier.padding(15.dp))
-                    Text(mainModel.data.value[index].name)
-                    Text(mainModel.data.value[index].species)
-                    Text(mainModel.data.value[index].gender)
-                }
-            }
-
-
-        }
+fun LoadingBar(showing: Boolean, modifier: Modifier) {
+    if (showing) {
+        CircularProgressIndicator(modifier = modifier)
     }
-
-
 }
+
+
 
 
 

@@ -8,3 +8,6 @@ fun placeHolderList(): List<RickMortyCharacter>{
             id = 0, species = "", status = ""))
 
 }
+
+val onError: List<RickMortyCharacter> = listOf(RickMortyCharacter(name = "Network Error", gender = "Null", image = "",
+    id = 0, species = "", status = ""))
