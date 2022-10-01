@@ -14,9 +14,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.kotlinrickmortyapi.MainViewModel
 
 
@@ -32,7 +32,7 @@ fun LazyListColumn(mainModel: MainViewModel = viewModel()) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-//                .background(color = Color.DarkGray)
+
 
 
 
@@ -53,13 +53,15 @@ fun LazyListColumn(mainModel: MainViewModel = viewModel()) {
             }
 
             LoadingBar(showing = mainModel.isLoading.value, modifier = Modifier.align(Center))
+            // Page change button
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .align(BottomCenter)
                     .padding(vertical = 50.dp)
                     .background(
-                        color = Color.DarkGray.copy(alpha = 0.5f),
+                        color = MaterialTheme.colors.secondaryVariant.copy(alpha = 0.5f),
+//                        color = Color.DarkGray.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(50.dp)
                     )) {
                 if(mainModel.page.value != 1){

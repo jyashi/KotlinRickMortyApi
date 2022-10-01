@@ -4,8 +4,8 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -14,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,47 +27,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.example.kotlinrickmortyapi.MainViewModel
-
-@Composable
-fun CharacterData(index: Int, mainModel: MainViewModel = viewModel()) {
-
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp),
-        elevation = 16.dp,
-        shape = RoundedCornerShape(12.dp),
-    ) {
-        Row() {
-
-
-            Row() {
-                AsyncImage(
-                    ImageRequest.Builder(LocalContext.current)
-                        .data(mainModel.data.value[index].image).crossfade(true)
-                        .transformations(CircleCropTransformation()).build(),
-                    contentDescription = null,
-                    modifier = Modifier.padding(15.dp)
-                )
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-
-                    Spacer(modifier = Modifier.padding(15.dp))
-                    Text(mainModel.data.value[index].name)
-                    Text(mainModel.data.value[index].species)
-                    Text(mainModel.data.value[index].gender)
-                }
-            }
-
-
-        }
-    }
-
-
-}
 
 
 @ExperimentalMaterialApi
@@ -143,50 +104,66 @@ fun ExpandableCard(
             }
             Spacer(modifier = Modifier.padding(5.dp))
             if (expandedState) {
-                Row() {
-                    Column() {
-                        Text("Name : ")
-                        Text("Species : ")
-                        Text("Gender : ")
-                        Text("Status : ")
+                Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+
+
+                    Row(modifier = Modifier
+                        .fillMaxSize()
+                        ) {
+                        Column() {
+                            Text("Name : ")
+                            Text("Species : ")
+                            Text("Gender : ")
+                            Text("Status : ")
+
+
+                        }
+                        Column() {
+                            Text(
+                                text = data.name,
+                                fontSize = descriptionFontSize,
+                                fontWeight = descriptionFontWeight,
+                                maxLines = descriptionMaxLines,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Text(
+                                text = data.species,
+                                fontSize = descriptionFontSize,
+                                fontWeight = descriptionFontWeight,
+                                maxLines = descriptionMaxLines,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Text(
+                                text = data.gender,
+                                fontSize = descriptionFontSize,
+                                fontWeight = descriptionFontWeight,
+                                maxLines = descriptionMaxLines,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Text(
+                                text = data.status,
+                                fontSize = descriptionFontSize,
+                                fontWeight = descriptionFontWeight,
+                                maxLines = descriptionMaxLines,
+                                overflow = TextOverflow.Ellipsis
+                            )
+
+
+
+                        }
+
 
 
                     }
-                    Column() {
-                        Text(
-                            text = data.name,
-                            fontSize = descriptionFontSize,
-                            fontWeight = descriptionFontWeight,
-                            maxLines = descriptionMaxLines,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = data.species,
-                            fontSize = descriptionFontSize,
-                            fontWeight = descriptionFontWeight,
-                            maxLines = descriptionMaxLines,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = data.gender,
-                            fontSize = descriptionFontSize,
-                            fontWeight = descriptionFontWeight,
-                            maxLines = descriptionMaxLines,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Text(
-                            text = data.status,
-                            fontSize = descriptionFontSize,
-                            fontWeight = descriptionFontWeight,
-                            maxLines = descriptionMaxLines,
-                            overflow = TextOverflow.Ellipsis
-                        )
 
-
+                    Spacer(modifier = Modifier.padding(20.dp).height(2.dp).fillMaxWidth().background(color = Color.White))
+                    Button(colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Text(text = "Click to know more")
                     }
-
-
                 }
+
 
             }
         }

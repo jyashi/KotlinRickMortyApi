@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.findNavController
 import com.example.kotlinrickmortyapi.components.LazyListColumn
 import com.example.kotlinrickmortyapi.components.changePageBtn
+import com.example.kotlinrickmortyapi.navigation.Navigation
 import com.example.kotlinrickmortyapi.ui.theme.KotlinRickMortyApiTheme
 
 
@@ -24,7 +26,6 @@ class MainActivity : ComponentActivity() {
     var page: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("Printing ln")
         println(mainModel._RickMortyMutableData.value)
 
         setContent {
