@@ -17,12 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.kotlinrickmortyapi.MainViewModel
 
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun LazyListColumn(mainModel: MainViewModel = viewModel()) {
+fun LazyListColumn(mainModel: MainViewModel = viewModel(), navController: NavController = rememberNavController()) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -44,7 +45,7 @@ fun LazyListColumn(mainModel: MainViewModel = viewModel()) {
             ) {
                 items(mainModel.data.value.size) { index ->
 //                    CharacterData(index = index)
-                    ExpandableCard(index = index)
+                    ExpandableCard(index = index, navController = navController)
                 }
                 item { 
                     Spacer(modifier = Modifier.padding(45.dp))

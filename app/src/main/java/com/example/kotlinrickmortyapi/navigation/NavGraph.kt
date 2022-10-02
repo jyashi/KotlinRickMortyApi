@@ -1,6 +1,6 @@
 package com.example.kotlinrickmortyapi.navigation
 
-sealed class NavGraph(val route: String) {
-    object MainPage: NavGraph(route = "main_page")
-    object DetailPage: NavGraph(route = "detail_page")
+sealed class NavigationGraph(val route: String) {
+    object MainPage: NavigationGraph(route = "main_page")
+    object DetailPage: NavigationGraph(route = "detail_page")
 }

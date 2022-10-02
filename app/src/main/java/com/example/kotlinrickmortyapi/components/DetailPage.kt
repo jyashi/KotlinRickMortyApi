@@ -11,13 +11,26 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.example.kotlinrickmortyapi.MainViewModel
 
+
 @Composable
-fun DetailPage(index: Int, mainModel: MainViewModel = viewModel(),navController: NavController) {
+fun testPg(navController: NavController){
+    Column {
+        Text(text = "Dummy Text here that pops", modifier = Modifier.align(Alignment.End))
+    }
+}
+
+@Composable
+fun DetailsPage(
+    index: Int,
+    mainModel: MainViewModel,
+    navController: NavController = rememberNavController()
+) {
 
     Card(
         modifier = Modifier
@@ -28,6 +41,7 @@ fun DetailPage(index: Int, mainModel: MainViewModel = viewModel(),navController:
     ) {
         Row() {
 
+            println("View model address in details page was --> $mainModel")
 
             Row() {
                 AsyncImage(

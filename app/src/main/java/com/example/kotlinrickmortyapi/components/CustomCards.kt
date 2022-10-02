@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.shadow
+import com.example.kotlinrickmortyapi.navigation.NavigationGraph
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -23,6 +23,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
@@ -34,6 +37,7 @@ import com.example.kotlinrickmortyapi.MainViewModel
 fun ExpandableCard(
     mainModel: MainViewModel = viewModel(),
     index: Int,
+    navController: NavController,
     titleFontSize: TextUnit = MaterialTheme.typography.h6.fontSize,
     titleFontWeight: FontWeight = FontWeight.Bold,
     descriptionFontSize: TextUnit = MaterialTheme.typography.subtitle1.fontSize,
@@ -156,9 +160,14 @@ fun ExpandableCard(
 
                     }
 
-                    Spacer(modifier = Modifier.padding(20.dp).height(2.dp).fillMaxWidth().background(color = Color.White))
+                    Spacer(modifier = Modifier
+                        .padding(20.dp)
+                        .height(2.dp)
+                        .fillMaxWidth()
+                        .background(color = Color.White))
                     Button(colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            navController.navigate(route = NavigationGraph.DetailPage.route) }
                     ) {
                         Text(text = "Click to know more")
                     }
