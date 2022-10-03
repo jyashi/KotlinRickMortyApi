@@ -20,7 +20,10 @@ data class RickMortyCharacter(
     val origin: Map<String,String>,
     @Json(name= "location")
     val location: Map<String,String>,
-
+    @Json(name= "created")
+    val created: String,
+    @Json(name= "episode")
+    val episode: List<String>,
 
 )
 data class RickMortyCharactersList(
