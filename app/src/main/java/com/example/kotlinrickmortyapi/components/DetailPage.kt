@@ -4,11 +4,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.NoLiveLiterals
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
@@ -22,7 +26,7 @@ import com.example.kotlinrickmortyapi.MainViewModel
 
 
 
-
+//@NoLiveLiterals
 @Composable
 fun DetailsPage(
     index: Int,
@@ -30,14 +34,16 @@ fun DetailsPage(
     navController: NavController = rememberNavController(),
     descriptionFontSize: TextUnit = MaterialTheme.typography.subtitle1.fontSize,
     descriptionFontWeight: FontWeight = FontWeight.SemiBold,
+    highlightWeight: FontWeight = FontWeight.W200
 ) {
     val name = mainModel.data.value[index].name
     val species = mainModel.data.value[index].species
     val gender = mainModel.data.value[index].gender
-    val planet = mainModel.data.value[index].origin["name"]
-    val location = mainModel.data.value[index].location["name"]
+    val planet = mainModel.data.value[index].origin["name"]?:"unknown"
+    val location = mainModel.data.value[index].location["name"]?:"unknown"
     val created = mainModel.data.value[index].created
     val episodes = mainModel.data.value[index].episode.size
+    val style = SpanStyle(color = Color.Yellow, fontWeight = highlightWeight)
     Card(
         modifier = Modifier
 
@@ -65,15 +71,55 @@ fun DetailsPage(
 
             }
             Spacer(modifier = Modifier.padding(25.dp))
+
             Text(
-                text = "$name is a $species of $gender gender from the planet $planet and currently resides on $location.",
+
+                buildAnnotatedString {
+
+                    withStyle(style = style ){
+                        append(name)
+                    }
+                    append(" is a ")
+
+                    withStyle(style = style){
+
+                        append(species)
+                    }
+                    append(" of ")
+                    withStyle(style = style){
+                        append(gender)
+                    }
+                    append(" gender from the planet ")
+                    withStyle(style = style) {
+                        append(planet)
+                    }
+                    append(" and currently resides on ")
+                    withStyle(style = style){
+                        append(location)
+                    }
+                    append(".")
+                },
                 fontSize = descriptionFontSize,
                 fontWeight = descriptionFontWeight,
 
             )
             Spacer(modifier = Modifier.padding(25.dp))
             Text(
-                text = "$name was created on $created and has appeared in $episodes episodes  .",
+                buildAnnotatedString {
+                    withStyle(style = style ){
+                        append(name)
+                    }
+                    append(" was created on ")
+                    withStyle(style = style ){
+                        append(created)
+                    }
+                    append(" and has appeared in ")
+                    withStyle(style = style ){
+                        append(episodes.toString())
+                    }
+                   append( " episodes ")
+                },
+
                 fontSize = descriptionFontSize,
                 fontWeight = descriptionFontWeight
             )
