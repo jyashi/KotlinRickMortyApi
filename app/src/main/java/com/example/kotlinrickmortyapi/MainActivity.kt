@@ -14,10 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import com.example.kotlinrickmortyapi.components.LazyListColumn
-import com.example.kotlinrickmortyapi.components.testPg
-import com.example.kotlinrickmortyapi.navigation.Navigation
+import com.example.kotlinrickmortyapi.navigation.NavigationGraph
 import com.example.kotlinrickmortyapi.ui.theme.KotlinRickMortyApiTheme
 
 
@@ -40,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
                     Column(verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally) {
-                        Navigation()
+                        NavigationGraph()
 
 
                     }

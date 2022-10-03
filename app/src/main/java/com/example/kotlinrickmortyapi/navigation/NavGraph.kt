@@ -1,6 +1,12 @@
 package com.example.kotlinrickmortyapi.navigation
 
-sealed class NavigationGraph(val route: String) {
-    object MainPage: NavigationGraph(route = "main_page")
-    object DetailPage: NavigationGraph(route = "detail_page")
+sealed class NavigationModel(val route: String) {
+    object MainPage: NavigationModel(route = "main_page")
+    object DetailPage: NavigationModel(route = "detail_page/{index}")
+
+    fun passIndex(index: Int):String{
+        return "detail_page/$index"
+    }
+
+
 }

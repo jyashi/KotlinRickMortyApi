@@ -1,4 +1,5 @@
 package com.example.kotlinrickmortyapi
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -61,6 +62,7 @@ class MainViewModel(private val repository: Repository = Repository(ApiClient().
                 if(response.isSuccessful){
                     _RickMortyMutableData.value = response.body()?.result!!
                   _data.value = response.body()?.result!!
+                    Log.d("Viewmodel","Data value was --> ${_data.value}")
                     isLoading.value = false
 
                 }

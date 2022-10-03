@@ -14,7 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
-import com.example.kotlinrickmortyapi.navigation.NavigationGraph
+import com.example.kotlinrickmortyapi.navigation.NavigationModel
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -24,8 +24,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
@@ -167,7 +165,7 @@ fun ExpandableCard(
                         .background(color = Color.White))
                     Button(colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
                         onClick = {
-                            navController.navigate(route = NavigationGraph.DetailPage.route) }
+                            navController.navigate(route = NavigationModel.DetailPage.passIndex(index)) }
                     ) {
                         Text(text = "Click to know more")
                     }

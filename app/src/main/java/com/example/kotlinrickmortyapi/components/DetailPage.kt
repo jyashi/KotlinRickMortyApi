@@ -31,19 +31,21 @@ fun DetailsPage(
     mainModel: MainViewModel,
     navController: NavController = rememberNavController()
 ) {
+    val name = mainModel.data.value[index].name
+    val species = mainModel.data.value[index].species
+    val gender = mainModel.data.value[index].gender
 
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 5.dp),
+
+            .padding(vertical = 25.dp, horizontal = 25.dp),
         elevation = 16.dp,
         shape = RoundedCornerShape(12.dp),
     ) {
-        Row() {
+        Column(verticalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.padding(25.dp)) {
+//            verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
 
-            println("View model address in details page was --> $mainModel")
-
-            Row() {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
                 AsyncImage(
                     ImageRequest.Builder(LocalContext.current)
                         .data(mainModel.data.value[index].image).crossfade(true)
@@ -51,17 +53,20 @@ fun DetailsPage(
                     contentDescription = null,
                     modifier = Modifier.padding(15.dp)
                 )
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
+                Spacer(modifier = Modifier.padding(15.dp))
+                Text(name)
 
-                    Spacer(modifier = Modifier.padding(15.dp))
-                    Text(mainModel.data.value[index].name)
-                    Text(mainModel.data.value[index].species)
-                    Text(mainModel.data.value[index].gender)
-                }
+            }
+            Spacer(modifier = Modifier.padding(25.dp))
+            Text(text = "$name is a $species of $gender gender")
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+
             }
 
 
