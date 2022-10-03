@@ -14,16 +14,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kotlinrickmortyapi.navigation.NavigationGraph
 import com.example.kotlinrickmortyapi.ui.theme.KotlinRickMortyApiTheme
 
 
 class MainActivity : ComponentActivity() {
     val mainModel: MainViewModel by viewModels()
-    var page: Int = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println(mainModel._RickMortyMutableData.value)
 
         setContent {
 
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
                     Column(verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally) {
-                        NavigationGraph()
+                        NavigationGraph(mainModel= mainModel)
 
 
                     }

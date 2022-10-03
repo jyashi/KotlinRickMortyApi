@@ -30,12 +30,13 @@ import com.example.kotlinrickmortyapi.MainViewModel
 @Composable
 fun DetailsPage(
     index: Int,
-    mainModel: MainViewModel,
+    mainModel: MainViewModel = viewModel(),
     navController: NavController = rememberNavController(),
     descriptionFontSize: TextUnit = MaterialTheme.typography.subtitle1.fontSize,
     descriptionFontWeight: FontWeight = FontWeight.SemiBold,
     highlightWeight: FontWeight = FontWeight.W200
 ) {
+    println("When called --> ${mainModel.data.value[0].name}")
     val name = mainModel.data.value[index].name
     val species = mainModel.data.value[index].species
     val gender = mainModel.data.value[index].gender

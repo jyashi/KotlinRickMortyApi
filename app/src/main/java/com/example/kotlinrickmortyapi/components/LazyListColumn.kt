@@ -23,7 +23,7 @@ import com.example.kotlinrickmortyapi.MainViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun LazyListColumn(mainModel: MainViewModel = viewModel(), navController: NavController = rememberNavController()) {
+fun LazyListColumn(mainModel: MainViewModel, navController: NavController = rememberNavController()) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -45,7 +45,7 @@ fun LazyListColumn(mainModel: MainViewModel = viewModel(), navController: NavCon
             ) {
                 items(mainModel.data.value.size) { index ->
 //                    CharacterData(index = index)
-                    ExpandableCard(index = index, navController = navController)
+                    ExpandableCard(index = index, navController = navController, mainModel = mainModel)
                 }
                 item { 
                     Spacer(modifier = Modifier.padding(45.dp))

@@ -33,7 +33,7 @@ import com.example.kotlinrickmortyapi.MainViewModel
 @ExperimentalMaterialApi
 @Composable
 fun ExpandableCard(
-    mainModel: MainViewModel = viewModel(),
+    mainModel: MainViewModel,
     index: Int,
     navController: NavController,
     titleFontSize: TextUnit = MaterialTheme.typography.h6.fontSize,
@@ -165,6 +165,7 @@ fun ExpandableCard(
                         .background(color = Color.White))
                     Button(colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
                         onClick = {
+
                             navController.navigate(route = NavigationModel.DetailPage.passIndex(index)) }
                     ) {
                         Text(text = "Click to know more")

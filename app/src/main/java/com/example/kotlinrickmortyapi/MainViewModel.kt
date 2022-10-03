@@ -20,7 +20,7 @@ class MainViewModel(private val repository: Repository = Repository(ApiClient().
     ViewModel() {
     var isLoading: MutableState<Boolean> = mutableStateOf(false)
     var page: MutableState<Int> = mutableStateOf(1)
-    var _data = mutableStateOf(listOf<RickMortyCharacter>())
+    private var _data = mutableStateOf(listOf<RickMortyCharacter>())
     var data : State<List<RickMortyCharacter>> = _data
 
 //private var _data = emptyList<RickMortyCharacter>().toMutableStateList()
@@ -62,7 +62,7 @@ class MainViewModel(private val repository: Repository = Repository(ApiClient().
                 if(response.isSuccessful){
                     _RickMortyMutableData.value = response.body()?.result!!
                     _data.value = response.body()?.result!!
-                    Log.d("Viewmodel","Data value was --> ${_data.value}")
+                    Log.d("View model","Data value was --> ${_data.value}")
                     isLoading.value = false
 
                 }

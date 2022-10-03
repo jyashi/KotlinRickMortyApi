@@ -13,12 +13,11 @@ import com.example.kotlinrickmortyapi.components.LazyListColumn
 
 
 @Composable
-fun NavigationGraph() {
-    val mainModel: MainViewModel = viewModel()
+fun NavigationGraph(mainModel: MainViewModel) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = NavigationModel.MainPage.route) {
         composable(route = NavigationModel.MainPage.route) {
-            LazyListColumn(navController = navController)
+            LazyListColumn(navController = navController, mainModel = mainModel)
 
         }
         composable(route = NavigationModel.DetailPage.route,
