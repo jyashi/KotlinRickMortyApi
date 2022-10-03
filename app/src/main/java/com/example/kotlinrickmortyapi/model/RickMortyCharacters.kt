@@ -18,6 +18,9 @@ data class RickMortyCharacter(
     val status: String,
     @Json(name= "origin")
     val origin: Map<String,String>,
+    @Json(name= "location")
+    val location: Map<String,String>,
+
 
 )
 data class RickMortyCharactersList(

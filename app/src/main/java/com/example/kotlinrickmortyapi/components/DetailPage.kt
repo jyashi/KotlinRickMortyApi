@@ -35,6 +35,7 @@ fun DetailsPage(
     val species = mainModel.data.value[index].species
     val gender = mainModel.data.value[index].gender
     val planet = mainModel.data.value[index].origin["name"]
+    val location = mainModel.data.value[index].location["name"]
     Card(
         modifier = Modifier
 
@@ -58,9 +59,9 @@ fun DetailsPage(
 
             }
             Spacer(modifier = Modifier.padding(25.dp))
-            Text(text = "$name is a $species of $gender gender from the planet $planet.")
-            Spacer(modifier = Modifier.padding(25.dp))
 
+            Spacer(modifier = Modifier.padding(25.dp))
+            Text(text = "Currently $name resides on $location.")
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
