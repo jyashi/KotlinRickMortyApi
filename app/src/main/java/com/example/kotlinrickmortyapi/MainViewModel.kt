@@ -61,7 +61,7 @@ class MainViewModel(private val repository: Repository = Repository(ApiClient().
             ) {
                 if(response.isSuccessful){
                     _RickMortyMutableData.value = response.body()?.result!!
-                  _data.value = response.body()?.result!!
+                    _data.value = response.body()?.result!!
                     Log.d("Viewmodel","Data value was --> ${_data.value}")
                     isLoading.value = false
 

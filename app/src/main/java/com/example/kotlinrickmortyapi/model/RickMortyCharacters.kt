@@ -12,8 +12,13 @@ data class RickMortyCharacter(
     val species: String,
     @Json(name="gender")
     val gender: String,
+    @Json(name="type")
+    val type: String,
     @Json(name= "status")
     val status: String,
+    @Json(name= "origin")
+    val origin: Map<String,String>,
+
 )
 data class RickMortyCharactersList(
     @Json(name="results")

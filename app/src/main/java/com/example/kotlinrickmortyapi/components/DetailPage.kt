@@ -34,7 +34,7 @@ fun DetailsPage(
     val name = mainModel.data.value[index].name
     val species = mainModel.data.value[index].species
     val gender = mainModel.data.value[index].gender
-
+    val planet = mainModel.data.value[index].origin["name"]
     Card(
         modifier = Modifier
 
@@ -58,7 +58,8 @@ fun DetailsPage(
 
             }
             Spacer(modifier = Modifier.padding(25.dp))
-            Text(text = "$name is a $species of $gender gender")
+            Text(text = "$name is a $species of $gender gender from the planet $planet.")
+            Spacer(modifier = Modifier.padding(25.dp))
 
             Column(
                 modifier = Modifier.fillMaxSize(),
