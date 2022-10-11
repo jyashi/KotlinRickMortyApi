@@ -44,7 +44,7 @@ fun DetailsPage(
     val location = mainModel.data.value[index].location["name"]?:"unknown"
     val created = mainModel.data.value[index].created
     val episodes = mainModel.data.value[index].episode.size
-    val style = SpanStyle(color = Color.Yellow, fontWeight = highlightWeight)
+    val style = SpanStyle(color = MaterialTheme.colors.primary, fontWeight = highlightWeight)
     Card(
         modifier = Modifier
 
@@ -125,7 +125,7 @@ fun DetailsPage(
                 fontWeight = descriptionFontWeight
             )
             Spacer(modifier = Modifier.padding(25.dp))
-            Button(colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray)
+            Button(colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.background)
                 ,onClick = {
                     navController.popBackStack()
                 }) {

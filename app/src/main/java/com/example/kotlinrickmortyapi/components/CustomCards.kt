@@ -163,7 +163,7 @@ fun ExpandableCard(
                         .height(2.dp)
                         .fillMaxWidth()
                         .background(color = Color.White))
-                    Button(colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray),
+                    Button(colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.background),
                         onClick = {
 
                             navController.navigate(route = NavigationModel.DetailPage.passIndex(index)) }

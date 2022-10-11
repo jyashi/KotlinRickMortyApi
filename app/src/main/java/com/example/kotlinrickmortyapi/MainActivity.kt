@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.surface
                 ) {
 
                     Column(verticalArrangement = Arrangement.Center,
