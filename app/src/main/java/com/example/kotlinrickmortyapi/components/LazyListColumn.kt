@@ -42,10 +42,8 @@ fun LazyListColumn(mainModel: MainViewModel, navController: NavController = reme
             LazyColumn(
                 modifier = Modifier
                     .padding(12.dp)
-//                    .background(color = Color.LightGray)
             ) {
                 items(mainModel.data.value.size) { index ->
-//                    CharacterData(index = index)
                     ExpandableCard(index = index, navController = navController, mainModel = mainModel)
                 }
                 item { 
@@ -62,7 +60,6 @@ fun LazyListColumn(mainModel: MainViewModel, navController: NavController = reme
                     .align(BottomCenter)
                     .padding(vertical = 50.dp)
                     .background(
-//                        color = MaterialTheme.colors.secondaryVariant.copy(alpha = 0.5f),
                         color = Color.DarkGray.copy(alpha = 0.5f),
                         shape = RoundedCornerShape(50.dp)
                     )) {
